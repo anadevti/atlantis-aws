@@ -1,17 +1,18 @@
-provider "aws" {
-  region     = "sa-east-1"
-  profile    = "default"
-}
-############ SAVING TF STATE FILE #########
 terraform {
+  required_version = ">= 1.0"
   backend "s3" {
-    bucket  = "test-atlantis-aws"
+    bucket  = "test-backstage-anav1"
     key     = "atlantis/terraform.tfstate"
     region  = "sa-east-1"
     profile = "default"
   }
 }
-################# EC2 INSTANCE CREATION #########
+
+provider "aws" {
+  region  = "sa-east-1"
+  profile = "default"
+}
+
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -25,7 +26,8 @@ data "aws_ami" "ubuntu" {
     values = ["hvm"]
   }
 
-  owners = ["428410430736"]
+  # ID oficial do Ubuntu
+  owners = ["099720109477"]
 }
 
 resource "aws_instance" "web" {
