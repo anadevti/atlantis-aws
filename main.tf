@@ -5,7 +5,7 @@ provider "aws" {
 ############ SAVING TF STATE FILE #########
 terraform {
   backend "s3" {
-    bucket  = "test-atlantis-aws"
+    bucket  = "test-backstage-anav1"
     key     = "atlantis/terraform.tfstate"
     region  = "sa-east-1"
     profile = "default"
